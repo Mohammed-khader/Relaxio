@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:relaxio/core/extensions/extension.dart';
 import 'package:relaxio/features/login/repo/login_repo.dart';
 import 'package:relaxio/features/login/view_model/login_states.dart';
 
@@ -13,7 +14,7 @@ class LoginCubit extends Cubit<LoginStates> {
   final formKey = GlobalKey<FormState>();
 
   Future<void> sendApiRequest() async {
-    if (formKey.currentState?.validate() ?? false) {
+    if (formKey.isValid()) {
       emit(LoginLoadingState());
       final result = await _loginRepo.sendApiRequest(
           phone: phoneControler.text, password: passwordControler.text);
