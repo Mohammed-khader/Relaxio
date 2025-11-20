@@ -7,7 +7,7 @@ class _HomeSearchWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomTextField(
       controller: context.read<HomeCubit>().searchController,
-      label: 'Starte your search',
+      label: S.of(context).startYourSearch,
       prefixIcon: const Icon(Icons.search),
       onChanged: (name) {
         context.read<HomeCubit>().getSearchFarm(name);

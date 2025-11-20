@@ -42,8 +42,8 @@ class FarmOwnerCardWidget extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 6),
-                  const Text(
-                    'Chat with owner',
+                  Text(
+                    S.of(context).chatwithOwner,
                     style: TextStyle(
                       fontSize: 14,
                       color: Colors.blueGrey,

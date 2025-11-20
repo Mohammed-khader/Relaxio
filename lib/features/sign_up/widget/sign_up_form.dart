@@ -9,6 +9,7 @@ import 'package:relaxio/core/widgets/text_field/custom_text_field.dart';
 import 'package:relaxio/features/sign_up/view_model/sign_up_cubit.dart';
 import 'package:relaxio/features/sign_up/view_model/sign_up_states.dart';
 import 'package:relaxio/features/verify_otp/view/verify_otp_view.dart';
+import 'package:relaxio/generated/l10n.dart';
 
 class SignUpForm extends StatelessWidget {
   const SignUpForm({super.key});
@@ -28,18 +29,18 @@ class SignUpForm extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Sign up',
+                  S.of(context).signUp,
                   style: GoogleFonts.poppins(
                       fontWeight: FontWeight.bold, fontSize: 30),
                 ),
                 const SizedBox(height: 30),
                 CustomTextField(
                   controller: cubit.nameControlar,
-                  label: 'Name',
+                  label: S.of(context).name,
                   keyboardType: TextInputType.name,
                   validator: (username) {
                     if (username?.isEmpty ?? true) {
-                      return "Please Enter Your Name";
+                      return S.of(context).pleaseEnterYourName;
                     }
                     return null;
                   },
@@ -47,7 +48,7 @@ class SignUpForm extends StatelessWidget {
                 const SizedBox(height: 15),
                 CustomTextField(
                   keyboardType: TextInputType.number,
-                  label: 'Phone',
+                  label: S.of(context).phone,
                   controller: cubit.phoneControlar,
                   maxLength: 10,
                   validator: (value) {
@@ -57,11 +58,11 @@ class SignUpForm extends StatelessWidget {
                     }
 
                     if (value == null || value.isEmpty) {
-                      return 'Please enter a phone ';
+                      return S.of(context).pleaseEnterAPhone;
                     }
 
                     if (!isValidPhoneNumber(value)) {
-                      return 'Phone number must be exactly 10 digits';
+                      return S.of(context).PhoneNumberMustBeExactly10Digits;
                     }
 
                     return null;
@@ -79,11 +80,11 @@ class SignUpForm extends StatelessWidget {
                     }
 
                     if (value == null || value.isEmpty) {
-                      return 'Please enter a ctry ID number';
+                      return S.of(context).pleaseEnterACtryIDNumber;
                     }
 
                     if (!isNumeric(value)) {
-                      return 'Only digits are allowed';
+                      return S.of(context).onlyDigitsAreAllowed;
                     }
 
                     return null;
@@ -91,14 +92,14 @@ class SignUpForm extends StatelessWidget {
                 ),
                 const SizedBox(height: 15),
                 CustomTextField(
-                  label: 'Password',
+                  label: S.of(context).Password,
                   controller: cubit.passwordControlar,
                   obscureText: true,
                   validator: (password) {
                     if (password?.isEmpty ?? true) {
-                      return "Please Enter your Password";
+                      return S.of(context).PleaseEnterYourPassword;
                     } else if ((password?.length ?? 0) < 8) {
-                      return "password must be at least 8 characters";
+                      return S.of(context).passwordMustBeAtLeast8Characters;
                     }
                     return null;
                   },
@@ -106,21 +107,21 @@ class SignUpForm extends StatelessWidget {
                 const SizedBox(height: 15),
                 CustomTextField(
                   controller: cubit.confirmpasswordControlar,
-                  label: 'Conferm password',
+                  label: S.of(context).confermPassword,
                   obscureText: true,
                   validator: (confermpassword) {
                     if (confermpassword?.isEmpty ?? true) {
-                      return "Please Enter your Confirm password";
+                      return S.of(context).pleaseEnterYourConfirmpassword;
                     } else if (confermpassword !=
                         cubit.passwordControlar.text) {
-                      return "Confirm password does not match";
+                      return S.of(context).ConfirmPasswordDoesNotMatch;
                     }
                     return null;
                   },
                 ),
                 const SizedBox(height: 30),
                 CustomButtons(
-                  text: 'Create Account',
+                  text: S.of(context).createAccount,
                   onTap: () {
                     cubit.sendSignUpRequest();
                   },

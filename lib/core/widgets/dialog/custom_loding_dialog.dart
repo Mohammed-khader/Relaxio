@@ -20,10 +20,12 @@ class CustomLoadingDialog extends StatelessWidget {
           SizedBox(
             height: 20,
           ),
-          Text('Please Wait ...',
-              style: TextStyle(
-                color: Colors.white,
-              ))
+          Text(
+            'Please Wait ...',
+            style: TextStyle(
+              color: Colors.white,
+            ),
+          )
         ],
       ),
     );

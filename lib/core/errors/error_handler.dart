@@ -6,23 +6,24 @@ import 'package:dio/dio.dart';
 class ErrorHandler {
   static String handleError(Object error) {
     if (error is DioException) {
-      if (error.response != null &&
-          error.response?.data != null &&
-          error.response?.data is Map<String, dynamic> &&
-          error.response?.data['error'] != null) {
-        return error.response?.data['error'];
-      } else {
-        return _handleDioException(error);
+      if (error.response != null) {
+        final data = error.response!.data;
+
+        if (data is Map<String, dynamic>) {
+          if (data['error'] != null) return data['error'];
+          if (data['message'] != null) return data['message'];
+          if (data['errors'] != null) return data['errors'].toString();
+        }
       }
-    } else if (error is FormatException) {
-      return 'Format Error';
-    } else if (error is SocketException) {
-      return 'Network Error';
-    } else if (error is TimeoutException) {
-      return 'Timeout Error';
-    } else {
-      return 'Somthing Went Wrong';
+
+      return _handleDioException(error);
     }
+
+    if (error is FormatException) return 'Format Error';
+    if (error is SocketException) return 'Network Error';
+    if (error is TimeoutException) return 'Timeout Error';
+
+    return 'Something Went Wrong';
   }
 
   static String _handleDioException(DioException dioException) {

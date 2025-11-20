@@ -5,6 +5,7 @@ import 'package:relaxio/core/theme/app_padding.dart';
 import 'package:relaxio/core/widgets/buttons/custom_buttons.dart';
 import 'package:relaxio/features/login/view/login_view.dart';
 import 'package:relaxio/features/sign_up/view/sign_up_view.dart';
+import 'package:relaxio/generated/l10n.dart';
 
 class OpenScreanView extends StatelessWidget {
   const OpenScreanView({super.key});
@@ -25,7 +26,7 @@ class OpenScreanView extends StatelessWidget {
             ),
             const SizedBox(height: 80),
             CustomButtons(
-              text: 'Loge in',
+              text: S.of(context).logeIn,
               onTap: () {
                 Navigator.push(
                   context,
@@ -40,7 +41,7 @@ class OpenScreanView extends StatelessWidget {
             CustomButtons(
               boxborder: Border.all(),
               color: Colors.white,
-              text: 'Create account',
+              text: S.of(context).createAccount,
               textColor: Colors.black,
               onTap: () {
                 Navigator.push(

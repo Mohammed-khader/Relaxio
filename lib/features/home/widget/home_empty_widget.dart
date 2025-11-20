@@ -10,18 +10,24 @@ class _EmptyFarmsWidget extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
-          border: Border.all(
-            color: AppColors.primary,
-          ),
         ),
-        child: const Center(
-          child: Text(
-            'No Farm Available',
-            style: TextStyle(
-              fontSize: 20,
-              color: AppColors.primary,
-              fontWeight: FontWeight.bold,
-            ),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Icon(Icons.error_outline, size: 40),
+              const SizedBox(
+                height: 30,
+              ),
+              Text(
+                S.of(context).noFarmAvailable,
+                style: const TextStyle(
+                  fontSize: 20,
+                  color: AppColors.primary,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
           ),
         ),
       ),

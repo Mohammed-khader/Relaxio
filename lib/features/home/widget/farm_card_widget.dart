@@ -82,43 +82,66 @@ class FarmCardWidget extends StatelessWidget {
             // بيانات المزرعة
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(farm.nameEn ?? '',
-                      style: const TextStyle(
-                          fontSize: 18, fontWeight: FontWeight.bold)),
-                  Text(farm.descriptionEn ?? '',
-                      maxLines: 2, overflow: TextOverflow.ellipsis),
-                  Row(
+              child: BlocBuilder<ChangeLangCubit, ChangeLangStates>(
+                builder: (context, state) {
+                  final langCode = context
+                      .read<ChangeLangCubit>()
+                      .currentLocale
+                      .languageCode;
+
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "${farm.minimumPriceAfterOffer ?? farm.minimumPrice} JD",
+                        langCode == 'ar'
+                            ? farm.nameAr ?? ''
+                            : farm.nameEn ?? '',
                         style: const TextStyle(
-                            fontSize: 18, color: AppColors.primary),
-                      ),
-                      const SizedBox(width: 15),
-                      if ((farm.currentOfferPercentage ?? 0) > 0)
-                        Text(
-                          "Good Deal ${farm.currentOfferPercentage ?? ''}%",
-                          style: const TextStyle(
-                              backgroundColor:
-                                  Color.fromARGB(255, 255, 205, 210),
-                              color: Color.fromARGB(255, 253, 21, 5),
-                              fontWeight: FontWeight.bold),
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
                         ),
-                      const Spacer(),
+                      ),
+                      Text(
+                        langCode == 'ar'
+                            ? farm.descriptionAr ?? ''
+                            : farm.descriptionEn ?? '',
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                      ),
                       Row(
                         children: [
-                          const Icon(Icons.star, color: Colors.amber, size: 22),
-                          const SizedBox(width: 2),
-                          Text("${farm.averageRating ?? 0}",
-                              style: const TextStyle(fontSize: 18)),
+                          Text(
+                            "${farm.minimumPriceAfterOffer ?? farm.minimumPrice} JD",
+                            style: const TextStyle(
+                              fontSize: 18,
+                              color: AppColors.primary,
+                            ),
+                          ),
+                          const SizedBox(width: 15),
+                          if ((farm.currentOfferPercentage ?? 0) > 0)
+                            Text(
+                              "Good Deal ${farm.currentOfferPercentage ?? ''}%",
+                              style: const TextStyle(
+                                  backgroundColor:
+                                      Color.fromARGB(255, 255, 205, 210),
+                                  color: Color.fromARGB(255, 253, 21, 5),
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          const Spacer(),
+                          Row(
+                            children: [
+                              const Icon(Icons.star,
+                                  color: Colors.amber, size: 22),
+                              const SizedBox(width: 2),
+                              Text("${farm.averageRating ?? 0}",
+                                  style: const TextStyle(fontSize: 18)),
+                            ],
+                          ),
                         ],
                       ),
                     ],
-                  ),
-                ],
+                  );
+                },
               ),
             ),
           ],

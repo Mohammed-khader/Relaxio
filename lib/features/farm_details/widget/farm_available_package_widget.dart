@@ -9,9 +9,9 @@ class FarmAvailablePackageWidget extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
-          'Available Package',
-          style: TextStyle(
+        Text(
+          S.of(context).availablePackage,
+          style: const TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.bold,
           ),
@@ -80,9 +80,9 @@ class FarmAvailablePackageWidget extends StatelessWidget {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
-                          const Text(
-                            'Start from',
-                            style: TextStyle(
+                          Text(
+                            S.of(context).startFrom,
+                            style: const TextStyle(
                               fontSize: 15,
                               fontWeight: FontWeight.w500,
                               color: Colors.black87,

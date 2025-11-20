@@ -9,9 +9,9 @@ class FarmFeaturesWidget extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
-          'Features',
-          style: TextStyle(
+        Text(
+          S.of(context).features,
+          style: const TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.bold,
           ),

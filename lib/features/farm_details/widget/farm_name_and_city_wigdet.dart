@@ -6,34 +6,44 @@ class FarmNameAndCityWigdet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Row(
+    return BlocBuilder<ChangeLangCubit, ChangeLangStates>(
+      builder: (context, state) {
+        final langCode =
+            context.read<ChangeLangCubit>().currentLocale.languageCode;
+
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SizedBox(width: 10),
-            Text(farm.nameEn, style: const TextStyle(fontSize: 20))
-          ],
-        ),
-        const SizedBox(height: 10),
-        Row(
-          children: [
-            const Icon(Icons.location_on_sharp, color: AppColors.primary),
-            Text(
-              ' ${farm.city?.nameEn ?? ''}  -  ',
-              style: const TextStyle(color: AppColors.primary),
+            Row(
+              children: [
+                const SizedBox(width: 10),
+                Text(langCode == 'ar' ? farm.nameAr : farm.nameEn,
+                    style: const TextStyle(fontSize: 20))
+              ],
             ),
-            Text(
-              farm.area?.nameEn ?? '',
-              style: const TextStyle(color: AppColors.primary),
+            const SizedBox(height: 10),
+            Row(
+              children: [
+                const Icon(Icons.location_on_sharp, color: AppColors.primary),
+                Text(
+                  ' ${langCode == 'ar' ? farm.city?.nameAr : farm.city?.nameEn ?? ''}  -  ',
+                  style: const TextStyle(color: AppColors.primary),
+                ),
+                Text(
+                  langCode == 'ar'
+                      ? farm.area?.nameAr ?? ''
+                      : farm.area?.nameEn ?? '',
+                  style: const TextStyle(color: AppColors.primary),
+                ),
+                const Spacer(),
+                const Icon(Icons.star, color: Colors.amber),
+                Text(farm.averageRating.toString()),
+                const SizedBox(width: 10),
+              ],
             ),
-            const Spacer(),
-            const Icon(Icons.star, color: Colors.amber),
-            Text(farm.averageRating.toString()),
-            const SizedBox(width: 10),
           ],
-        ),
-      ],
+        );
+      },
     );
   }
 }

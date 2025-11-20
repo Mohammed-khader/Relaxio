@@ -65,7 +65,7 @@ class _SplashViewState extends State<SplashView> {
             ),
           ),
           Text(
-            ' Relaxio',
+            'Relaxio',
             style: GoogleFonts.bebasNeue(
                 fontWeight: FontWeight.bold, fontSize: 70),
           )

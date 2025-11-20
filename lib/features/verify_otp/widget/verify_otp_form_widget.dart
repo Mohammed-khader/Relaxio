@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:relaxio/core/widgets/buttons/custom_buttons.dart';
 import 'package:relaxio/features/sign_up/view_model/sign_up_cubit.dart';
 import 'package:relaxio/features/verify_otp/view_model/verify_otp_cubit.dart';
+import 'package:relaxio/generated/l10n.dart';
 
 class VerifyOtpFormWidget extends StatelessWidget {
   const VerifyOtpFormWidget({super.key, required this.cubit});
@@ -18,13 +19,13 @@ class VerifyOtpFormWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-            'Please check your phone message',
+            S.of(context).pleaseCheckYourPhoneMessage,
             style:
                 GoogleFonts.poppins(fontSize: 30, fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 20),
           Text(
-            'We\'ve sent a code to ${context.read<SignUpCubit>().phoneControlar.text}',
+            '${S.of(context).weveSentACodeTo} ${context.read<SignUpCubit>().phoneControlar.text}',
             style: GoogleFonts.poppins(
                 color: Colors.grey, fontSize: 15, fontWeight: FontWeight.bold),
           ),
@@ -69,7 +70,7 @@ class VerifyOtpFormWidget extends StatelessWidget {
           const SizedBox(height: 50),
           Center(
             child: CustomButtons(
-              text: 'Verify OTP',
+              text: S.of(context).verifyOTP,
               onTap: () {
                 cubit.sendVerifyOtp(
                   code: cubit.otpCode,
@@ -80,7 +81,7 @@ class VerifyOtpFormWidget extends StatelessWidget {
           const SizedBox(height: 20),
           Center(
             child: Text(
-              'Send code again   00:20',
+              '${S.of(context).sendCodeAgain}  00:20',
               style: GoogleFonts.poppins(
                   color: Colors.grey,
                   fontSize: 15,

@@ -11,6 +11,7 @@ import 'package:relaxio/features/home/view/home_view.dart';
 import 'package:relaxio/features/login/view_model/login_cubit.dart';
 import 'package:relaxio/features/login/view_model/login_states.dart';
 import 'package:relaxio/features/sign_up/view/sign_up_view.dart';
+import 'package:relaxio/generated/l10n.dart';
 
 class LoginForm extends StatelessWidget {
   const LoginForm({super.key});
@@ -32,7 +33,7 @@ class LoginForm extends StatelessWidget {
               children: [
                 const SizedBox(height: 20),
                 Text(
-                  'Login',
+                  S.of(context).logeIn,
                   style: GoogleFonts.poppins(fontSize: 40),
                 ),
                 const SizedBox(height: 30),
@@ -41,11 +42,11 @@ class LoginForm extends StatelessWidget {
                   keyboardType: TextInputType.emailAddress,
                   validator: (email) {
                     if (email?.isEmpty ?? true) {
-                      return 'Please Enter Your Email';
+                      return S.of(context).pleaseEnterACtryIDNumber;
                     }
                     return null;
                   },
-                  label: 'Phone',
+                  label: S.of(context).phone,
                 ),
                 const SizedBox(height: 20),
                 CustomTextField(
@@ -54,22 +55,22 @@ class LoginForm extends StatelessWidget {
                   controller: cubit.passwordControler,
                   validator: (password) {
                     if (password?.isEmpty ?? true) {
-                      return 'Please Enter Your Password';
+                      return S.of(context).PleaseEnterYourPassword;
                     }
                     return null;
                   },
-                  label: 'Password',
+                  label: S.of(context).Password,
                 ),
                 const SizedBox(height: 20),
                 InkWell(
                   onTap: () {},
-                  child: Text('Forget Passowrd ?',
+                  child: Text(S.of(context).forgetPassowrd,
                       style: GoogleFonts.poppins(
                           fontSize: 15, color: AppColors.primary)),
                 ),
                 const SizedBox(height: 20),
                 CustomButtons(
-                  text: 'Login',
+                  text: S.of(context).logeIn,
                   onTap: () {
                     cubit.sendApiRequest();
                   },
@@ -78,7 +79,7 @@ class LoginForm extends StatelessWidget {
                 Row(
                   children: [
                     Text(
-                      'Do you have an account ? ',
+                      S.of(context).doYouHaveAnAccount,
                       style: GoogleFonts.poppins(
                         fontSize: 15,
                         fontWeight: FontWeight.bold,
@@ -92,7 +93,7 @@ class LoginForm extends StatelessWidget {
                                 builder: (context) => const SignUpView()));
                       },
                       child: Text(
-                        'Sign Up ',
+                        S.of(context).signUp,
                         style: GoogleFonts.poppins(
                             fontSize: 15,
                             fontWeight: FontWeight.bold,
